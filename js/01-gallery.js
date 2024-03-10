@@ -33,24 +33,23 @@ function onGalleryItemsClick(evt) {
     return;
   }
 
-  const instance = basicLightbox.create(`<img src="${target.dataset.source}">`)
+  const instance = basicLightbox.create(`<img src="${target.dataset.source}">`, {
+    onShow: (instance) => {
+    window.addEventListener('keydown', onKeydown)
+  },
+   onClose: (instance) => {
+    window.removeEventListener('keydown', onKeydown)
+  }})
 
   instance.show();
-
-  const visible = instance.visible();
-  if (visible) {
-    window.addEventListener('keydown', onKeydown)
-
-function onKeydown(evt) {
-  console.log(evt)
+  
+    function onKeydown(evt) {
   if(evt.key === 'Escape') {
   instance.close() 
-  
-    window.removeEventListener('keydown', onKeydown)
-  }
   }
 }
   }
+
 
 
 

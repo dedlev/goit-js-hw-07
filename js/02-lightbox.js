@@ -3,8 +3,6 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.gallery');
 
-galleryContainer.addEventListener('click', onGalleryItemsClick);
-
 const galleryMarkup = createGalleryItemsMarkup(galleryItems);
 
 galleryContainer.innerHTML = galleryMarkup;
@@ -21,14 +19,6 @@ function createGalleryItemsMarkup(items) {
     .join('');
 }
 
-function onGalleryItemsClick(evt) {
-  evt.preventDefault();
-
-  const { target } = evt;
-  if (!target.classList.contains('gallery__image')) {
-    return;
-  } 
-
-new SimpleLightbox('.gallery a', { captionsData: "alt", captionDelay: 250
+new SimpleLightbox('.gallery a', { captionsData: "alt", captionPosition: 'bottom', captionDelay: 250
     });
-}
+
